@@ -13,8 +13,8 @@ int main() {
 	
 	stack<char> s1, s2;
 	
-    for(auto &x:s){
-    	s1.push(x);
+	for(auto &x:s) {
+		s1.push(x);
 	}
 	
 	while(n--) {
