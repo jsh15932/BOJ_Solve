@@ -3,15 +3,15 @@
 #include<algorithm>
 using namespace std;
 
-int n, m;
-vector <int> a[1001];
 bool chk[1001];
+vector <int> v[1001];
 
 void dfs(int node) {
 	chk[node] = true;
 	
-	for(int i = 0; i < a[node].size(); i++) {
-		int next = a[node][i];
+	for(int i = 0; i < v[node].size(); i++) {
+		int next = v[node][i];
+		
 		if(!chk[next]) {
 			dfs(next);
 		}
@@ -19,18 +19,20 @@ void dfs(int node) {
 }
 
 int main() {
+	int n, m;
+	int a, b;
+	int cnt = 0;
+	
 	cin >> n >> m;
 	
 	for(int i = 0; i < m; i++) {
-		int u, v;
-		cin >> u >> v;
-		a[u].push_back(v);
-		a[v].push_back(u);
+		cin >> a >> b;
+		
+		v[a].push_back(b);
+		v[b].push_back(a);
 	}
 	
-	int cnt = 0;
-	
-	for(int i = 1; i <= n; i++){
+	for(int i = 1; i <= n; i++) {
 		if(!chk[i]) {
 			dfs(i);
 			cnt++;
