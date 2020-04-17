@@ -1,46 +1,29 @@
 #include<iostream>
+#include<vector>
 #include<algorithm>
 using namespace std;
 
-int map[26][26];
-int size[626];
-int dir[4][2] = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
+int d[25][25];
+int dx[] = {-1, 0, 1, 0};
+int dy[] = {0, -1, 0, 1};
+vector <int> v;
 int cnt;
 int n;
 
-bool inside(int a, int b) {
-	return (a >= 0 & a < n) && (b >= 0 & b < n);
-}
-
-void dfs(int a, int b, int key) {
-	map[a][b] = key;
+void dfs(int x, int y) {
+	d[x][y] = 0;
+	cnt++;
 	
 	for(int i = 0; i < 4; i++) {
-		int dy = a + dir[i][0];
-		int dx = b + dir[i][1];
+		if(x + dx[i] < 0 || y + dy[i] < 0 || x + dx[i] >= n || y + dy[i] >= n) {
+			continue;
+		}
 		
-		if(inside(dy, dx) && map[dy][dx] == 1) {
-			dfs(dy, dx, key);
+		if(d[x + dx[i]][y + dy[i]] == 0) {
+			continue;
 		}
-	}
-}
-
-void Solve(int n) {
-	for(int i = 0; i < n; i++) {
-		for(int j = 0; j < n; j++) {
-			if(map[i][j] == 1) {
-				cnt++;
-				dfs(i, j, cnt + 1);
-			}
-		}
-	}
-	
-	for(int i = 0; i < n; i++) {
-		for(int j = 0; j < n; j++) {
-			if(map[i][j] > 1) {
-				size[map[i][j] - 2]++;
-			}
-		}
+		
+		dfs(x + dx[i], y + dy[i]);
 	}
 }
 
@@ -49,17 +32,25 @@ int main() {
 	
 	for(int i = 0; i < n; i++) {
 		for(int j = 0; j < n; j++) {
-			scanf("%1d", &map[i][j]);
+			scanf("%1d", &d[i][j]);
 		}
 	}
 	
-	Solve(n);
+	for(int i = 0; i < n; i++) {
+		for(int j = 0; j < n; j++) {
+			if(d[i][j] == 1) {
+				cnt = 0;
+				dfs(i, j);
+				v.push_back(cnt);
+			}
+		}
+	}
 	
-	sort(size, size + cnt);
+	sort(v.begin(), v.end());
 	
-	cout << cnt << '\n';
+	cout << v.size() << '\n';
 	
-	for(int i = 0; i < cnt; i++) {
-		cout << size[i] << endl;
+	for(int i = 0; i < v.size(); i++) {
+		cout << v[i] << endl;
 	}
 }
