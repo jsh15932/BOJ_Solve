@@ -1,65 +1,61 @@
 #include<iostream>
 #include<cstring>
-#include<vector>
 #include<algorithm>
 using namespace std;
 
-int graph[100001];
+bool chk[100001];
+bool fin[100001];
+int v[100001];
 int parent[100001];
-bool visited[100001];
-bool finished[100001];
+int cnt;
+int n, tc;
 
-int k;
-int tc;
-
-void cycle(int v, int p) {
-	k++;
+void cycle(int v1, int v2) {
+	cnt++;
 	
-	if(v == p) {
+	if(v1 == v2) {
 		return;
 	}
 	
-	cycle(parent[v], p);
+	cycle(parent[v1], v2);
 }
 
-void dfs(int v) {
-	visited[v] = true;
-	int next = graph[v];
+void dfs(int v1) {
+	chk[v1] = true;
 	
-	if(!visited[next]) {
-		parent[next] = v;
-		dfs(next);
+	if(!chk[v[v1]]) {
+		parent[v[v1]] = v1;
+		dfs(v[v1]);
 	}
 	
-	else if(!finished[next]) {
-		cycle(v, next);
+	else if(!fin[v[v1]]) {
+		cycle(v1, v[v1]);
 	}
 	
-	finished[v] = true;
+	fin[v1] = true;
 }
 
 int main() {
-	int n;
-	
 	cin >> tc;
 	
 	while(tc--) {
-		k = 0;
-		
-		memset(visited, false, sizeof(visited));
-		memset(finished, false, sizeof(finished));
-		
 		cin >> n;
 		
+		cnt = 0;
+		
+		memset(chk, false, sizeof(chk));
+		memset(fin, false, sizeof(fin));
+		
 		for(int i = 1; i <= n; i++) {
-			cin >> graph[i];
+			cin >> v[i];
 		}
 		
 		for(int i = 1; i <= n; i++) {
-			if(!visited[i]) {
+			if(!chk[i]) {
 				dfs(i);
 			}
 		}
-		cout << n - k << '\n';
+		
+		cout << n - cnt << '\n';
 	}
 }
