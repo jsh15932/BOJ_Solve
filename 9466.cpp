@@ -5,10 +5,9 @@ using namespace std;
 
 bool chk[100001];
 bool fin[100001];
-int v[100001];
+int vc[100001];
 int parent[100001];
 int cnt;
-int n, tc;
 
 void cycle(int v1, int v2) {
 	cnt++;
@@ -23,19 +22,21 @@ void cycle(int v1, int v2) {
 void dfs(int v1) {
 	chk[v1] = true;
 	
-	if(!chk[v[v1]]) {
-		parent[v[v1]] = v1;
-		dfs(v[v1]);
+	if(!chk[vc[v1]]) {
+		parent[vc[v1]] = v1;
+		dfs(vc[v1]);
 	}
 	
-	else if(!fin[v[v1]]) {
-		cycle(v1, v[v1]);
+	else if(!fin[vc[v1]]) {
+		cycle(v1, vc[v1]);
 	}
 	
 	fin[v1] = true;
 }
 
 int main() {
+	int tc, n;
+	
 	cin >> tc;
 	
 	while(tc--) {
@@ -47,7 +48,7 @@ int main() {
 		memset(fin, false, sizeof(fin));
 		
 		for(int i = 1; i <= n; i++) {
-			cin >> v[i];
+			cin >> vc[i];
 		}
 		
 		for(int i = 1; i <= n; i++) {
