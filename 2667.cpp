@@ -5,10 +5,9 @@ using namespace std;
 
 int dx[] = {-1, 0, 1, 0};
 int dy[] = {0, -1, 0, 1};
-int map[25][25];
-int n;
-int cnt;
-vector <int> v;
+int map[26][26];
+int cnt, n;
+vector <int> vc;
 
 void dfs(int x, int y) {
 	map[x][y] = 0;
@@ -39,16 +38,16 @@ int main() {
 			if(map[i][j] == 1) {
 				cnt = 1;
 				dfs(i, j);
-				v.push_back(cnt);
+				vc.push_back(cnt);
 			}
 		}
 	}
 	
-	cout << v.size() << '\n';
+	cout << vc.size() << '\n';
 	
-	sort(v.begin(), v.end());
+	sort(vc.begin(), vc.end());
 	
-	for(int i = 0; i < v.size(); i++) {
-		cout << v[i] << endl;
+	for(int i = 0; i < vc.size(); i++) {
+		cout << vc[i] << endl;
 	}
 }
