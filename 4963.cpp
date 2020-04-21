@@ -13,7 +13,7 @@ void dfs(int x, int y) {
 	
 	for(int i = 0; i < 8; i++) {
 		if(x + dx[i] >= 0 && y + dy[i] >= 0 && x + dx[i] < n && y + dy[i] < m) {
-			if(map[x + dx[i]][y + dy[i]] == 1){
+			if(map[x + dx[i]][y + dy[i]] == 1) {
 				dfs(x + dx[i], y + dy[i]);
 			}
 		}
@@ -24,7 +24,7 @@ int main() {
 	while(1) {
 		cin >> m >> n;
 		
-		if(n == 0 & m == 0) {
+		if(n == 0 && m == 0) {
 			break;
 		}
 		
