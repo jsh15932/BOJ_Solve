@@ -6,24 +6,22 @@ using namespace std;
 int dx[] = {-1, 0, 1, 0};
 int dy[] = {0, -1, 0, 1};
 int map[1001][1001];
-int n, m;
-int cnt;
-queue < pair <int, int> > q;
+queue < pair <int, int> > que;
+int cnt, n, m;
 
 int bfs() {
-	while(!q.empty()) {
-		int x, y;
-		x = q.front().first;
-		y = q.front().second;
+	while(!que.empty()) {
+		int q1 = que.front().first;
+		int q2 = que.front().second;
 		
-		q.pop();
+		que.pop();
 		
 		for(int i = 0; i < 4; i++) {
-			if(x + dx[i] >= 0 && y + dy[i] >= 0 && x + dx[i] < n && y + dy[i] < m) {
-				if(map[x + dx[i]][y + dy[i]] == 0) {
-					map[x + dx[i]][y + dy[i]] = map[x][y] + 1;
-					q.push(make_pair(x + dx[i], y + dy[i]));
-					cnt = map[x + dx[i]][y + dy[i]];
+			if(q1 + dx[i] >= 0 && q2 + dy[i] >= 0 && q1 + dx[i] < n && q2 + dy[i] < m) {
+				if(map[q1 + dx[i]][q2 + dy[i]] == 0) {
+					map[q1 + dx[i]][q2 + dy[i]] = map[q1][q2] + 1;
+					que.push(make_pair(q1 + dx[i], q2 + dy[i]));
+					cnt = map[q1 + dx[i]][q2 + dy[i]];
 				}
 			}
 		}
@@ -52,7 +50,7 @@ int main() {
 			cin >> map[i][j];
 			
 			if(map[i][j] == 1) {
-				q.push(make_pair(i, j));
+				que.push(make_pair(i, j));
 			}
 		}
 	}
