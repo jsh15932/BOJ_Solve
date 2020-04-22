@@ -33,12 +33,9 @@ int main() {
 				total += d[i] - mid;
 			}
 		}
-		
+
 		if(total >= m) {
-			if(result < mid) {
-				result = mid;
-			}
-			
+			result = mid;
 			left = mid + 1;
 		}
 		
