@@ -1,4 +1,4 @@
-#include<iostream>
+#include<cstdio>
 #include<algorithm>
 using namespace std;
 
@@ -7,7 +7,7 @@ int n;
 long long int m;
 
 int main() {
-	cin >> n;
+	scanf("%d", &n);
 	scanf("%lld", &m);
 	
 	long long int max = 0;
@@ -15,7 +15,7 @@ int main() {
 	for(int i = 0; i < n; i++) {
 		scanf("%lld", &d[i]);
 		
-		if(d[i] > max) {
+		if(max < d[i]) {
 			max = d[i];
 		}
 	}
@@ -25,8 +25,8 @@ int main() {
 	long long int result = 0;
 	
 	while(left <= right) {
-		long long int total = 0;
 		long long int mid = (left + right) / 2;
+		long long int total = 0;
 		
 		for(int i = 0; i < n; i++) {
 			if(d[i] > mid) {
@@ -47,5 +47,5 @@ int main() {
 		}
 	}
 	
-	cout << result;
+	printf("%lld", result);
 }
