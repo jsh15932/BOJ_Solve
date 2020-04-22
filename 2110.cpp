@@ -2,12 +2,11 @@
 #include<algorithm>
 using namespace std;
 
+long long int d[200001];
 int n, c;
 
 int main() {
 	cin >> n >> c;
-	
-	long long int d[n];
 	
 	for(int i = 0; i < n; i++) {
 		scanf("%lld", &d[i]);
@@ -15,19 +14,19 @@ int main() {
 	
 	sort(d, d + n);
 	
-	int left = 1;
+	long long int left = 1;
 	long long int right = d[n - 1] - d[0];
-	int result = 0;
+	long long int result = 0;
 	
 	while(left <= right) {
 		long long int mid = (left + right) / 2;
+		long long int start = d[0];
 		int cnt = 1;
-		int start = d[0];
 		
-		for(int i = 1; i < n; i++) {
+		for(int i = 0; i < n; i++) {
 			if(d[i] - start >= mid) {
-				cnt++;
 				start = d[i];
+				cnt++;
 			}
 		}
 		
