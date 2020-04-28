@@ -19,19 +19,19 @@ void cycle(int v1, int v2) {
 	cycle(parent[v1], v2);
 }
 
-void dfs(int v1) {
-	chk[v1] = true;
+void dfs(int node) {
+	chk[node] = true;
 	
-	if(!chk[vc[v1]]) {
-		parent[vc[v1]] = v1;
-		dfs(vc[v1]);
+	if(!chk[vc[node]]) {
+		parent[vc[node]] = node;
+		dfs(vc[node]);
 	}
 	
-	else if(!fin[vc[v1]]) {
-		cycle(v1, vc[v1]);
+	else if(!fin[vc[node]]) {
+		cycle(node, vc[node]);
 	}
 	
-	fin[v1] = true;
+	fin[node] = true;
 }
 
 int main() {
@@ -57,6 +57,6 @@ int main() {
 			}
 		}
 		
-		cout << n - cnt << '\n';
+		cout << n - cnt << endl;
 	}
 }
