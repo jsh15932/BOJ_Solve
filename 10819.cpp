@@ -4,6 +4,7 @@ using namespace std;
 
 int n;
 int d[9];
+int ans = -1;
 
 int main() {
 	cin >> n;
@@ -11,8 +12,6 @@ int main() {
 	for(int i = 0; i < n; i++) {
 		cin >> d[i];
 	}
-	
-	int ans = -1;
 	
 	sort(d, d + n);
 	
@@ -26,5 +25,5 @@ int main() {
 		ans = max(ans, tmp);
 	}
 	
-	cout << ans << endl;
+	cout << ans;
 }
