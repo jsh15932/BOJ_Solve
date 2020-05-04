@@ -1,12 +1,12 @@
 #include<iostream>
 #include<algorithm>
 using namespace std;
-#define max 987654321
+#define max 98764321
 
 int n;
-int ans = max;
 int map[11][11];
 bool visited[11];
+int ans = max;
 int start;
 
 void dfs(int node, int cost, int cnt) {
@@ -18,7 +18,7 @@ void dfs(int node, int cost, int cnt) {
 	}
 	
 	for(int i = 1; i <= n; i++) {
-		if(map[node][i] && visited[i] == false) {
+		if(map[node][i] && !visited[i]) {
 			visited[i] = true;
 			dfs(i, cost + map[node][i], cnt + 1);
 			visited[i] = false;
