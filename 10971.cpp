@@ -5,12 +5,12 @@ using namespace std;
 int map[11][11];
 bool chk[11];
 int n;
-int m = 987654321;
+int ans = 987654321;
 
 void dfs(int x, int y, int sum, int cnt) {
 	if(cnt == n && x == y) {
-		if(m > sum) {
-			m = sum;
+		if(ans > sum) {
+			ans = sum;
 		}
 		
 		return;
@@ -25,7 +25,7 @@ void dfs(int x, int y, int sum, int cnt) {
 			chk[y] = true;
 			sum += map[y][i];
 			
-			if(sum <= m) {
+			if(sum <= ans) {
 				dfs(x, i, sum, cnt + 1);
 			}
 			
@@ -48,5 +48,5 @@ int main() {
 		dfs(i, i, 0, 0);
 	}
 	
-	cout << m;
+	cout << ans;
 }
