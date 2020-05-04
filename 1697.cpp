@@ -1,15 +1,16 @@
 #include<iostream>
 #include<queue>
+#include<algorithm>
 using namespace std;
 #define max 100001
 
 int n, k;
 int ans, res;
-bool visited[max];
 int dx[] = {-1, 0, 1};
+bool visited[max];
 queue < pair <int, int> > que;
 
-void bfs(int x) {	
+void bfs(int x) {
 	while(!que.empty()) {
 		int q1 = que.front().first;
 		int q2 = que.front().second;
@@ -44,7 +45,7 @@ int main() {
 	cin >> n >> k;
 	
 	que.push(make_pair(n, 0));
-	visited[n] = 1;
+	visited[n] = true;
 	
 	bfs(n);
 	
