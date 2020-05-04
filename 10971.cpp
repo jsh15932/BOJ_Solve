@@ -1,36 +1,27 @@
 #include<iostream>
 #include<algorithm>
 using namespace std;
+#define max 987654321
 
-int map[11][11];
-bool chk[11];
 int n;
-int ans = 987654321;
+int ans = max;
+int map[11][11];
+bool visited[11];
+int start;
 
-void dfs(int x, int y, int sum, int cnt) {
-	if(cnt == n && x == y) {
-		if(ans > sum) {
-			ans = sum;
+void dfs(int node, int cost, int cnt) {
+	if(cnt == n - 1) {
+		if(map[node][start]) {
+			ans = min(ans, cost + map[node][start]);
+			return;
 		}
-		
-		return;
 	}
 	
-	for(int i = 0; i < n; i++) {
-		if(map[y][i] == 0) {
-			continue;
-		}
-		
-		if(!chk[y] && map[y][i] > 0) {
-			chk[y] = true;
-			sum += map[y][i];
-			
-			if(sum <= ans) {
-				dfs(x, i, sum, cnt + 1);
-			}
-			
-			chk[y] = false;
-			sum -= map[y][i];
+	for(int i = 1; i <= n; i++) {
+		if(map[node][i] && visited[i] == false) {
+			visited[i] = true;
+			dfs(i, cost + map[node][i], cnt + 1);
+			visited[i] = false;
 		}
 	}
 }
@@ -38,14 +29,17 @@ void dfs(int x, int y, int sum, int cnt) {
 int main() {
 	cin >> n;
 	
-	for(int i = 0; i < n; i++) {
-		for(int j = 0; j < n; j++) {
+	for(int i = 1; i <= n; i++) {
+		for(int j = 1; j <= n; j++) {
 			cin >> map[i][j];
 		}
 	}
 	
-	for(int i = 0; i < n; i++) {
-		dfs(i, i, 0, 0);
+	for(int i = 1; i <= n; i++) {
+		start = i;
+		visited[i] = true;
+		dfs(i, 0, 0);
+		visited[i] = false;
 	}
 	
 	cout << ans;
