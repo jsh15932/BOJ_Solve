@@ -1,4 +1,4 @@
-#include<cstdio>
+#include<iostream>
 #include<map>
 #include<algorithm>
 using namespace std;
@@ -7,17 +7,21 @@ map <int, int> cnt;
 int n, m, num;
 
 int main() {
-	scanf("%d", &n);
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	cout.tie(0);
+	
+	cin >> n;
 	
 	for(int i = 0; i < n; i++) {
-		scanf("%d", &num);
+		cin >> num;
 		cnt[num]++;
 	}
 	
-	scanf("%d", &m);
+	cin >> m;
 	
 	for(int i = 0; i < m; i++) {
-		scanf("%d", &num);
-		printf("%d ", cnt[num]);
+		cin >> num;
+		cout << cnt[num] << ' ';
 	}
 }
