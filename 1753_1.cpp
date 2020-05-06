@@ -14,18 +14,18 @@ priority_queue < pair <int, int> > pq;
 
 void Solve() {
 	while(!pq.empty()) {
-		int pq1 = -pq.top().first;
-		int pq2 = pq.top().second;
+		int cost = -pq.top().first;
+		int cur = pq.top().second;
 		
 		pq.pop();
 		
-		for(int i = 0; i < vc[pq2].size(); i++) {
-			int vc1 = vc[pq2][i].first;
-			int vc2 = vc[pq2][i].second;
+		for(int i = 0; i < vc[cur].size(); i++) {
+			int next = vc[cur][i].first;
+			int next_cost = vc[cur][i].second;
 			
-			if(d[vc1] > pq1 + vc2) {
-				d[vc1] = pq1 + vc2;
-				pq.push(make_pair(-d[vc1], vc1));
+			if(d[next] > cost + next_cost) {
+				d[next] = cost + next_cost;
+				pq.push(make_pair(-d[next], next));
 			}
 		}
 	}
