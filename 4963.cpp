@@ -2,10 +2,10 @@
 #include<algorithm>
 using namespace std;
 
+int w, h;
 int dx[] = {-1, -1, -1, 1, 1, 1, 0, 0};
 int dy[] = {-1, 0, 1, -1, 0, 1, -1, 1};
 int map[51][51];
-int w, h;
 int cnt;
 
 void dfs(int x, int y) {
@@ -13,8 +13,10 @@ void dfs(int x, int y) {
 	
 	for(int i = 0; i < 8; i++) {
 		for(int j = 0; j < 8; j++) {
-			if(map[x + dx[i]][y + dy[i]] == 1) {
-				dfs(x + dx[i], y + dy[i]);
+			if(x + dx[i] >= 0 && y + dy[i] >= 0 && x + dx[i] < w && y + dy[i] < h) {
+				if(map[x + dx[i]][y + dy[i]] == 1) {
+					dfs(x + dx[i], y + dy[i]);
+				}
 			}
 		}
 	}
