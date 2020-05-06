@@ -1,9 +1,9 @@
 #include<iostream>
+#include<algorithm>
 #include<queue>
 #include<vector>
-#include<algorithm>
 using namespace std;
-#define max 20010
+#define max 20001
 #define INF 987654321
 
 int v, e, start;
@@ -12,7 +12,7 @@ int d[max];
 vector < pair <int, int> > vc[max];
 priority_queue < pair <int, int> > pq;
 
-void Solve() {
+void dijkstra() {
 	while(!pq.empty()) {
 		int cost = -pq.top().first;
 		int cur = pq.top().second;
@@ -36,17 +36,18 @@ int main() {
 	
 	for(int i = 0; i < e; i++) {
 		cin >> a >> b >> c;
+		
 		vc[a].push_back(make_pair(b, c));
 	}
 	
-	for(int i = 1; i <= v; i++) {
+	for(int i = 0; i <= v; i++) {
 		d[i] = INF;
 	}
 	
 	pq.push(make_pair(0, start));
 	d[start] = 0;
 	
-	Solve();
+	dijkstra();
 	
 	for(int i = 1; i <= v; i++) {
 		if(d[i] == INF) {
