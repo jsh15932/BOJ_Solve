@@ -1,26 +1,21 @@
 #include<iostream>
 #include<algorithm>
 using namespace std;
-#define INF 987654321
 
 int n, m;
-int a, b, c;
+int from, to, cost;
 int map[101][101];
 
 void floyd() {
-	for(int i = 1; i <= n; i++) {
-		for(int j = 1; j <= n; j++) {
-			if(map[j][i] == 0) {
-				continue;
-			}
-			
-			for(int k = 1; k <= n; k++) {
-				if(map[i][k] == 0 || j == k) {
+	for(int via = 1; via <= n; via++) {
+		for(int from = 1; from <= n; from++) {
+			for(int to = 1; to <= n; to++) {
+				if(map[from][via] == 0 || map[via][to] == 0 || from == to) {
 					continue;
 				}
 				
-				if(map[j][k] == 0 || map[j][k] > map[j][i] + map[i][k]) {
-					map[j][k] = map[j][i] + map[i][k];
+				if(map[from][to] == 0 || map[from][via] + map[via][to] < map[from][to]) {
+					map[from][to] = map[from][via] + map[via][to];
 				}
 			}
 		}
@@ -31,14 +26,14 @@ int main() {
 	cin >> n >> m;
 	
 	for(int i = 0; i < m; i++) {
-		cin >> a >> b >> c;
+		cin >> from >> to >> cost;
 		
-		if(!map[a][b]) {
-			map[a][b] = c;
+		if(map[from][to]) {
+			map[from][to] = min(map[from][to], cost);
 		}
 		
 		else {
-			map[a][b] = min(map[a][b], c);
+			map[from][to] = cost;
 		}
 	}
 	
@@ -46,7 +41,7 @@ int main() {
 	
 	for(int i = 1; i <= n; i++) {
 		for(int j = 1; j <= n; j++) {
-			cout << map[i][j] << " ";
+			cout << map[i][j] << ' ';
 		}
 		
 		cout << endl;
