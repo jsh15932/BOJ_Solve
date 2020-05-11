@@ -1,20 +1,19 @@
 #include<iostream>
 #include<algorithm>
 using namespace std;
-#define INF 987654321
 
 int n, m;
 int a, b;
 int ans;
-int map[501][501];
+int map[501][501] = {0, };
 int chk[501];
 
 void floyd() {
 	for(int via = 1; via <= n; via++) {
 		for(int from = 1; from <= n; from++) {
 			for(int to = 1; to <= n; to++) {
-				if(map[from][via] + map[via][to] < map[from][to]) {
-					map[from][to] = map[from][via] + map[via][to];
+				if(map[from][via] && map[via][to]) {
+					map[from][to] = 1;
 				}
 			}
 		}
@@ -26,7 +25,7 @@ int main() {
 	
 	for(int i = 1; i <= n; i++) {
 		for(int j = 1; j <= n; j++) {
-			map[i][j] = INF;
+			map[i][j] = 0;
 		}
 	}
 	
@@ -39,7 +38,7 @@ int main() {
 	
 	for(int i = 1; i <= n; i++) {
 		for(int j = 1; j <= n; j++) {
-			if(map[i][j] != INF) {
+			if(map[i][j] == 1) {
 				chk[i]++;
 				chk[j]++;
 				
