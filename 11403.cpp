@@ -3,32 +3,36 @@
 using namespace std;
 
 int n;
-int d[100][100];
+int map[101][101];
 
-int main() {
-	cin >> n;
-	
-	for(int i = 0; i < n; i++) {
-		for(int j = 0; j < n; j++) {
-			cin >> d[i][j];
-		}
-	}
-	
-	for(int i = 0; i < n; i++) {
-		for(int j = 0; j < n; j++) {
-			for(int k = 0; k < n; k++) {
-				if(d[j][i] && d[i][k]) {
-					d[j][k] = 1;
+void floyd() {
+	for(int via = 1; via <= n; via++) {
+		for(int from = 1; from <= n; from++) {
+			for(int to = 1; to <= n; to++) {
+				if(map[from][via] && map[via][to]) {
+					map[from][to] = 1;
 				}
 			}
 		}
 	}
+}
+
+int main() {
+	cin >> n;
 	
-	for(int i = 0; i < n; i++) {
-		for(int j = 0; j < n; j++) {
-			cout << d[i][j] << ' ';
+	for(int i = 1; i <= n; i++) {
+		for(int j = 1; j <= n; j++) {
+			cin >> map[i][j];
+		}
+	}
+	
+	floyd();
+	
+	for(int i = 1; i <= n; i++) {
+		for(int j = 1; j <= n; j++) {
+			cout << map[i][j] << ' ';
 		}
 		
-		cout << '\n';
+		cout << endl;
 	}
 }
