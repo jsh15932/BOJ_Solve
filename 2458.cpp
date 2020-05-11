@@ -23,12 +23,6 @@ void floyd() {
 int main() {
 	cin >> n >> m;
 	
-	for(int i = 1; i <= n; i++) {
-		for(int j = 1; j <= n; j++) {
-			map[i][j] = 0;
-		}
-	}
-	
 	for(int i = 0; i < m; i++) {
 		cin >> a >> b;
 		map[a][b] = 1;
