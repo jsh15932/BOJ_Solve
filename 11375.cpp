@@ -12,9 +12,9 @@ bool visited[1001];
 int d[1001];
 vector < vector <int> > vc;
 
-int dfs(int cur) {
+bool dfs(int cur) {
 	if(visited[cur]) {
-		return 0;
+		return false;
 	}
 	
 	visited[cur] = true;
@@ -24,11 +24,11 @@ int dfs(int cur) {
 		
 		if(!d[next] || dfs(d[next])) {
 			d[next] = cur;
-			return 1;
+			return true;
 		}
 	}
 	
-	return 0;
+	return false;
 }
 
 int main() {
