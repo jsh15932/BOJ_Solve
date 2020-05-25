@@ -3,17 +3,17 @@
 #include<algorithm>
 using namespace std;
 
-int n, m;
+int n, m, cnt;
+int a, b;
 bool visited[1001];
 vector <int> vc[1001];
-int cnt;
 
-void dfs(int node) {
-	visited[node] = true;
+void dfs(int x) {
+	visited[x] = true;
 	
-	for(int i = 0; i < vc[node].size(); i++) {
-		if(!visited[vc[node][i]]) {
-			dfs(vc[node][i]);
+	for(int i = 0; i < vc[x].size(); i++) {
+		if(!visited[vc[x][i]]) {
+			dfs(vc[x][i]);
 		}
 	}
 }
@@ -21,13 +21,11 @@ void dfs(int node) {
 int main() {
 	cin >> n >> m;
 	
-	for(int i = 1; i <= m; i++) {
-		int v1, v2;
+	for(int i = 0; i < m; i++) {
+		cin >> a >> b;
 		
-		cin >> v1 >> v2;
-		
-		vc[v1].push_back(v2);
-		vc[v2].push_back(v1);
+		vc[a].push_back(b);
+		vc[b].push_back(a);
 	}
 	
 	for(int i = 1; i <= n; i++) {
