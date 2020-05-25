@@ -1,8 +1,9 @@
 #include<iostream>
+#include<cstring>
 #include<algorithm>
 using namespace std;
 
-int n, m, k, tc;
+int t, n, m, k;
 int a, b;
 int cnt;
 int dx[] = {-1, 0, 1, 0};
@@ -22,25 +23,22 @@ void dfs(int x, int y) {
 }
 
 int main() {
-	cin >> tc;
+	cin >> t;
 	
-	while(tc--) {
-		cin >> n >> m >> k;
-		
+	while(t--) {
 		cnt = 0;
 		
-		for(int i = 0; i < n; i++) {
-			for(int j = 0; j < m; j++) {
-				map[i][j] = 0;
-				visited[i][j] = false;
-			}
-		}
+		memset(map, 0, sizeof(map));
+
+		cin >> n >> m >> k;
 		
 		for(int i = 0; i < k; i++) {
 			cin >> a >> b;
 			
 			map[a][b] = 1;
 		}
+		
+		memset(visited, false, sizeof(visited));
 		
 		for(int i = 0; i < n; i++) {
 			for(int j = 0; j < m; j++) {
