@@ -3,11 +3,13 @@
 #include<algorithm>
 using namespace std;
 
-int n, res, ans, cnt;
+int n, h, cnt;
+int map[101][101];
 int dx[] = {-1, 0, 1, 0};
 int dy[] = {0, -1, 0, 1};
-int map[101][101];
 bool visited[101][101];
+int res = 0;
+int ans = 0;
 
 void dfs(int x, int y, int h) {
 	for(int i = 0; i < 4; i++) {
@@ -27,26 +29,30 @@ int main() {
 		for(int j = 0; j < n; j++) {
 			cin >> map[i][j];
 			
-			res = max(res, map[i][j]);
+			if(map[i][j] > res) {
+				res = map[i][j];
+			}
 		}
 	}
 	
-	for(int h = 0; h <= res; h++) {
+	for(int i = 0; i <= res; i++) {
 		cnt = 0;
 		
 		memset(visited, false, sizeof(visited));
 		
-		for(int i = 0; i < n; i++) {
-			for(int j = 0; j < n; j++) {
-				if(map[i][j] > h && !visited[i][j]) {
-					visited[i][j] = true;
-					dfs(i, j, h);
+		for(int j = 0; j < n; j++) {
+			for(int k = 0; k < n; k++) {
+				if(map[j][k] > i && !visited[j][k]) {
+					visited[j][k] = true;
+					dfs(j, k, i);
 					cnt++;
 				}
 			}
 		}
 		
-		ans = max(ans, cnt);
+		if(cnt > ans) {
+			ans = cnt;
+		}
 	}
 	
 	cout << ans;
