@@ -3,22 +3,24 @@
 #include<algorithm>
 using namespace std;
 
-vector <int> a[20001];
+int t;
+int v, e;
+int x, y;
+vector <int> vc[20001];
 int chk[20001];
+bool ans;
 
 bool dfs(int node, int set) {
 	chk[node] = set;
 	
-	for(int i = 0; i < a[node].size(); i++) {
-		int next = a[node][i];
-		
-		if(chk[next] == 0) {
-			if(!dfs(next, -set)) {
+	for(int i = 0; i < vc[node].size(); i++) {
+		if(chk[vc[node][i]] == 0) {
+			if(!dfs(vc[node][i], -set)) {
 				return false;
 			}
 		}
 		
-		else if(chk[next] == chk[node]) {
+		else if(chk[vc[node][i]] == chk[node]) {
 			return false;
 		}
 	}
@@ -27,27 +29,24 @@ bool dfs(int node, int set) {
 }
 
 int main() {
-	int tc;
-	int v, e;
-	int x, y;
-
-	cin >> tc;
+	cin >> t;
 	
-	while(tc--) {
+	while(t--) {
+		ans = true;
+		
 		cin >> v >> e;
 		
 		for(int i = 1; i <= v; i++) {
-			a[i].clear();
+			vc[i].clear();
 			chk[i] = 0;
 		}
 		
 		for(int i = 0; i < e; i++) {
 			cin >> x >> y;
-			a[x].push_back(y);
-			a[y].push_back(x);
+			
+			vc[x].push_back(y);
+			vc[y].push_back(x);
 		}
-		
-		bool ans = true;
 		
 		for(int i = 1; i <= v; i++) {
 			if(chk[i] == 0) {
