@@ -5,8 +5,25 @@ using namespace std;
 
 int n, m;
 int a, b;
-int map[101][101];
 int ans;
+int map[101][101];
+
+void floyd() {
+	for(int via = 1; via <= n; via++) {
+		for(int from = 1; from <= n; from++) {
+			for(int to = 1; to <= n; to++) {
+				if(from == to) {
+					continue;
+				}
+				
+				if(map[from][via] + map[via][to] < map[from][to]) {
+					map[from][to] = map[from][via] + map[via][to];
+					map[to][from] = map[from][via] + map[via][to];
+				}
+			}
+		}
+	}
+}
 
 int main() {
 	cin >> n >> m;
@@ -30,20 +47,7 @@ int main() {
 		map[b][a] = 1;
 	}
 	
-	for(int i = 1; i <= n; i++) {
-		for(int j = 1; j <= n; j++) {
-			for(int k = 1; k <= n; k++) {
-				if(j == k) {
-					continue;
-				}
-				
-				if(map[j][i] + map[i][k] < map[j][k]) {
-					map[j][k] = map[j][i] + map[i][k];
-					map[k][j] = map[j][i] + map[i][k];
-				}
-			}
-		}
-	}
+	floyd();
 	
 	int min = INF;
 	
