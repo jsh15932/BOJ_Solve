@@ -3,13 +3,13 @@
 #include<algorithm>
 using namespace std;
 
+int n, m, ans;
+int map[1001][1001];
 int dx[] = {-1, 0, 1, 0};
 int dy[] = {0, -1, 0, 1};
-int map[1001][1001];
 queue < pair <int, int> > que;
-int cnt, n, m;
 
-int bfs() {
+void bfs() {
 	while(!que.empty()) {
 		int q1 = que.front().first;
 		int q2 = que.front().second;
@@ -21,25 +21,10 @@ int bfs() {
 				if(map[q1 + dx[i]][q2 + dy[i]] == 0) {
 					map[q1 + dx[i]][q2 + dy[i]] = map[q1][q2] + 1;
 					que.push(make_pair(q1 + dx[i], q2 + dy[i]));
-					cnt = map[q1 + dx[i]][q2 + dy[i]];
 				}
 			}
 		}
 	}
-	
-	for(int i = 0; i < n; i++) {
-		for(int j = 0; j < m; j++) {
-			if(map[i][j] == 0) {
-				return -1;
-			}
-		}
-	}
-	
-	if(cnt == 0) {
-		return 0;
-	}
-	
-	return cnt - 1;
 }
 
 int main() {
@@ -55,5 +40,20 @@ int main() {
 		}
 	}
 	
-	cout << bfs();
+	bfs();
+	
+	for(int i = 0; i < n; i++) {
+		for(int j = 0; j < m; j++) {
+			if(map[i][j] == 0) {
+				cout << -1;
+				return 0;
+			}
+			
+			if(map[i][j] > ans) {
+				ans = map[i][j];
+			}
+		}
+	}
+	
+	cout << ans - 1;
 }
