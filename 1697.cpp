@@ -1,6 +1,4 @@
-#include<iostream>
-#include<queue>
-#include<algorithm>
+#include<bits/stdc++.h>
 using namespace std;
 
 int n, k, res;
@@ -39,10 +37,10 @@ int bfs(int x) {
 }
 
 int main() {
-	cin >> n >> k;
+	scanf("%d %d", &n, &k);
 	
 	que.push(make_pair(n, 0));
 	visited[n] = true;
 	
-	cout << bfs(n);
+	printf("%d", bfs(n));
 }
