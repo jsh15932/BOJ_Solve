@@ -1,13 +1,11 @@
-#include<iostream>
-#include<queue>
-#include<algorithm>
+#include<bits/stdc++.h>
 using namespace std;
 
 int n, m, ans;
-int map[1001][1001];
+int dp[1001][1001];
 int dx[] = {-1, 0, 1, 0};
 int dy[] = {0, -1, 0, 1};
-queue < pair <int, int> > que;
+queue < pair < int, int > > que;
 
 void bfs() {
 	while(!que.empty()) {
@@ -17,10 +15,12 @@ void bfs() {
 		que.pop();
 		
 		for(int i = 0; i < 4; i++) {
-			if(q1 + dx[i] >= 0 && q2 + dy[i] >= 0 && q1 + dx[i] < n && q2 + dy[i] < m) {
-				if(map[q1 + dx[i]][q2 + dy[i]] == 0) {
-					map[q1 + dx[i]][q2 + dy[i]] = map[q1][q2] + 1;
-					que.push(make_pair(q1 + dx[i], q2 + dy[i]));
+			for(int j = 0; j < 4; j++) {
+				if(q1 + dx[i] >= 0 && q2 + dy[i] >= 0 && q1 + dx[i] < n && q2 + dy[i] < m) {
+					if(dp[q1 + dx[i]][q2 + dy[i]] == 0) {
+						dp[q1 + dx[i]][q2 + dy[i]] = dp[q1][q2] + 1;
+						que.push(make_pair(q1 + dx[i], q2 + dy[i]));
+					}
 				}
 			}
 		}
@@ -28,13 +28,13 @@ void bfs() {
 }
 
 int main() {
-	cin >> m >> n;
+	scanf("%d %d", &m, &n);
 	
 	for(int i = 0; i < n; i++) {
 		for(int j = 0; j < m; j++) {
-			cin >> map[i][j];
+			scanf("%d", &dp[i][j]);
 			
-			if(map[i][j] == 1) {
+			if(dp[i][j] == 1) {
 				que.push(make_pair(i, j));
 			}
 		}
@@ -44,16 +44,16 @@ int main() {
 	
 	for(int i = 0; i < n; i++) {
 		for(int j = 0; j < m; j++) {
-			if(map[i][j] == 0) {
-				cout << -1;
+			if(dp[i][j] == 0) {
+				printf("-1");
 				return 0;
 			}
 			
-			if(map[i][j] > ans) {
-				ans = map[i][j];
+			if(dp[i][j] > ans) {
+				ans = dp[i][j];
 			}
 		}
 	}
 	
-	cout << ans - 1;
+	printf("%d", ans - 1);
 }
