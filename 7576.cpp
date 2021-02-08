@@ -15,12 +15,10 @@ void bfs() {
 		que.pop();
 		
 		for(int i = 0; i < 4; i++) {
-			for(int j = 0; j < 4; j++) {
-				if(q1 + dx[i] >= 0 && q2 + dy[i] >= 0 && q1 + dx[i] < n && q2 + dy[i] < m) {
-					if(dp[q1 + dx[i]][q2 + dy[i]] == 0) {
-						dp[q1 + dx[i]][q2 + dy[i]] = dp[q1][q2] + 1;
-						que.push(make_pair(q1 + dx[i], q2 + dy[i]));
-					}
+		    if(q1 + dx[i] >= 0 && q2 + dy[i] >= 0 && q1 + dx[i] < n && q2 + dy[i] < m) {
+				if(dp[q1 + dx[i]][q2 + dy[i]] == 0) {
+				    dp[q1 + dx[i]][q2 + dy[i]] = dp[q1][q2] + 1;
+				    que.push(make_pair(q1 + dx[i], q2 + dy[i]));
 				}
 			}
 		}
