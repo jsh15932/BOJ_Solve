@@ -1,19 +1,18 @@
-#include<iostream>
-#include<algorithm>
+#include<bits/stdc++.h>
 using namespace std;
 
 int n, m;
-int d[101][101];
-bool visited[101];
-int cnt;
 int a, b;
+int d[101][101];
+int cnt;
+bool visited[101];
 
-void dfs(int node) {
+void dfs(int x) {
 	cnt++;
-	visited[node] = true;
+	visited[x] = true;
 	
 	for(int i = 1; i <= n; i++) {
-		if(!visited[i] && d[node][i]) {
+		if(d[x][i] == 1 && !visited[i]) {
 			dfs(i);
 		}
 	}
@@ -26,7 +25,7 @@ int main() {
 		cin >> a >> b;
 		
 		d[a][b] = 1;
-		d[b][a] = 1; 
+		d[b][a] = 1;
 	}
 	
 	dfs(1);
