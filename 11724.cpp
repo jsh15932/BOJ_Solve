@@ -1,12 +1,9 @@
-#include<iostream>
-#include<vector>
-#include<algorithm>
+#include<bits/stdc++.h>
 using namespace std;
 
-int n, m, cnt;
-int a, b;
-bool visited[1001];
+int n, m, a, b;
 vector <int> vc[1001];
+bool visited[1001];
 
 void dfs(int x) {
 	visited[x] = true;
@@ -22,11 +19,13 @@ int main() {
 	cin >> n >> m;
 	
 	for(int i = 0; i < m; i++) {
-		cin >> a >> b;
+		scanf("%d %d", &a, &b);
 		
 		vc[a].push_back(b);
 		vc[b].push_back(a);
 	}
+	
+	int cnt = 0;
 	
 	for(int i = 1; i <= n; i++) {
 		if(!visited[i]) {
@@ -35,5 +34,5 @@ int main() {
 		}
 	}
 	
-	cout << cnt;
+	printf("%d", cnt);
 }
