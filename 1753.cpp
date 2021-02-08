@@ -3,10 +3,9 @@ using namespace std;
 #define INF 987654321
 
 int v, e, k;
-int a, b, c;
-int dp[20001];
+int dp[200001];
 priority_queue < pair < int, int > > pq;
-vector < pair < int, int > > vc[20001];
+vector < pair < int, int > > vc[200001];
 
 void dijkstra() {
 	while(!pq.empty()) {
@@ -31,6 +30,8 @@ int main() {
 	scanf("%d %d %d", &v, &e, &k);
 	
 	for(int i = 0; i < e; i++) {
+		int a, b, c;
+		
 		scanf("%d %d %d", &a, &b, &c);
 		
 		vc[a].push_back(make_pair(b, c));
