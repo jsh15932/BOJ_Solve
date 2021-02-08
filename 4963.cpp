@@ -1,22 +1,18 @@
-#include<iostream>
-#include<algorithm>
+#include<bits/stdc++.h>
 using namespace std;
 
 int w, h;
 int dx[] = {-1, -1, -1, 1, 1, 1, 0, 0};
 int dy[] = {-1, 0, 1, -1, 0, 1, -1, 1};
-int map[51][51];
-int cnt;
+int dp[51][51];
 
 void dfs(int x, int y) {
-	map[x][y] = 0;
+	dp[x][y] = 0;
 	
 	for(int i = 0; i < 8; i++) {
-		for(int j = 0; j < 8; j++) {
-			if(x + dx[i] >= 0 && y + dy[i] >= 0 && x + dx[i] < w && y + dy[i] < h) {
-				if(map[x + dx[i]][y + dy[i]] == 1) {
-					dfs(x + dx[i], y + dy[i]);
-				}
+		if(x + dx[i] >= 0 && y + dy[i] >= 0 && x + dx[i] < w && y + dy[i] < h) {
+			if(dp[x + dx[i]][y + dy[i]] == 1) {
+				dfs(x + dx[i], y + dy[i]);
 			}
 		}
 	}
@@ -24,29 +20,29 @@ void dfs(int x, int y) {
 
 int main() {
 	while(1) {
-		cin >> h >> w;
-		
-		cnt = 0;
+		scanf("%d %d", &h, &w);
 		
 		if(w == 0 && h == 0) {
 			break;
 		}
 		
+		int cnt = 0;
+		
 		for(int i = 0; i < w; i++) {
 			for(int j = 0; j < h; j++) {
-				scanf("%1d", &map[i][j]);
+				scanf("%1d", &dp[i][j]);
 			}
 		}
 		
 		for(int i = 0; i < w; i++) {
 			for(int j = 0; j < h; j++) {
-				if(map[i][j] == 1) {
+				if(dp[i][j] == 1) {
 					dfs(i, j);
 					cnt++;
 				}
 			}
 		}
 		
-		cout << cnt << endl;
+		printf("%d\n", cnt);
 	}
 }
