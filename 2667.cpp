@@ -1,23 +1,21 @@
-#include<iostream>
-#include<vector>
-#include<algorithm>
+#include<bits/stdc++.h>
 using namespace std;
 
+int n, cnt;
 int dx[] = {-1, 0, 1, 0};
 int dy[] = {0, -1, 0, 1};
-int map[26][26];
-int cnt, n;
+int dp[26][26];
 vector <int> vc;
 
 void dfs(int x, int y) {
-	map[x][y] = 0;
+	dp[x][y] = 0;
 	
 	for(int i = 0; i < 4; i++) {
 		for(int j = 0; j < 4; j++) {
 			if(x + dx[i] >= 0 && y + dy[i] >= 0 && x + dx[i] < n && y + dy[i] < n) {
-				if(map[x + dx[i]][y + dy[i]] == 1) {
-					dfs(x + dx[i], y + dy[i]);
+				if(dp[x + dx[i]][y + dy[i]] == 1) {
 					cnt++;
+					dfs(x + dx[i], y + dy[i]);
 				}
 			}
 		}
@@ -29,13 +27,13 @@ int main() {
 	
 	for(int i = 0; i < n; i++) {
 		for(int j = 0; j < n; j++) {
-			scanf("%1d", &map[i][j]);
+			scanf("%1d", &dp[i][j]);
 		}
 	}
 	
 	for(int i = 0; i < n; i++) {
 		for(int j = 0; j < n; j++) {
-			if(map[i][j] == 1) {
+			if(dp[i][j] == 1) {
 				cnt = 1;
 				dfs(i, j);
 				vc.push_back(cnt);
@@ -43,11 +41,11 @@ int main() {
 		}
 	}
 	
-	cout << vc.size() << '\n';
+	printf("%d\n", vc.size());
 	
 	sort(vc.begin(), vc.end());
 	
 	for(int i = 0; i < vc.size(); i++) {
-		cout << vc[i] << endl;
+		printf("%d\n", vc[i]);
 	}
 }
