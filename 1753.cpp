@@ -1,16 +1,12 @@
-#include<iostream>
-#include<algorithm>
-#include<queue>
-#include<vector>
+#include<bits/stdc++.h>
 using namespace std;
-#define max 20001
 #define INF 987654321
 
-int v, e, start;
+int v, e, k;
 int a, b, c;
-int d[max];
-vector < pair <int, int> > vc[max];
-priority_queue < pair <int, int> > pq;
+int dp[20001];
+priority_queue < pair < int, int > > pq;
+vector < pair < int, int > > vc[20001];
 
 void dijkstra() {
 	while(!pq.empty()) {
@@ -23,39 +19,39 @@ void dijkstra() {
 			int next = vc[cur][i].first;
 			int next_cost = vc[cur][i].second;
 			
-			if(d[next] > cost + next_cost) {
-				d[next] = cost + next_cost;
-				pq.push(make_pair(-d[next], next));
+			if(dp[next] > cost + next_cost) {
+				dp[next] = cost + next_cost;
+				pq.push(make_pair(-dp[next], next));
 			}
 		}
 	}
 }
 
 int main() {
-	cin >> v >> e >> start;
+	scanf("%d %d %d", &v, &e, &k);
 	
 	for(int i = 0; i < e; i++) {
-		cin >> a >> b >> c;
+		scanf("%d %d %d", &a, &b, &c);
 		
 		vc[a].push_back(make_pair(b, c));
 	}
 	
-	for(int i = 0; i <= v; i++) {
-		d[i] = INF;
+	for(int i = 1; i <= v; i++) {
+		dp[i] = INF;
 	}
 	
-	pq.push(make_pair(0, start));
-	d[start] = 0;
+	pq.push(make_pair(0, k));
+	dp[k] = 0;
 	
 	dijkstra();
 	
 	for(int i = 1; i <= v; i++) {
-		if(d[i] == INF) {
-			cout << "INF" << '\n';
+		if(dp[i] == INF) {
+			printf("INF\n");
 		}
 		
 		else {
-			cout << d[i] << '\n';
+			printf("%d\n", dp[i]);
 		}
 	}
 }
