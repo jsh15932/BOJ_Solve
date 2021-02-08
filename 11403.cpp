@@ -1,16 +1,15 @@
-#include<iostream>
-#include<algorithm>
+#include<bits/stdc++.h>
 using namespace std;
 
 int n;
-int map[101][101];
+int dp[101][101];
 
 void floyd() {
-	for(int via = 1; via <= n; via++) {
-		for(int from = 1; from <= n; from++) {
-			for(int to = 1; to <= n; to++) {
-				if(map[from][via] && map[via][to]) {
-					map[from][to] = 1;
+	for(int via = 0; via < n; via++) {
+		for(int from = 0; from < n; from++) {
+			for(int to = 0; to < n; to++) {
+				if(dp[from][via] == 1 && dp[via][to] == 1) {
+					dp[from][to] = 1;
 				}
 			}
 		}
@@ -18,21 +17,21 @@ void floyd() {
 }
 
 int main() {
-	cin >> n;
+	scanf("%d", &n);
 	
-	for(int i = 1; i <= n; i++) {
-		for(int j = 1; j <= n; j++) {
-			cin >> map[i][j];
+	for(int i = 0; i < n; i++) {
+		for(int j = 0; j < n; j++) {
+			scanf("%d", &dp[i][j]);
 		}
 	}
 	
 	floyd();
 	
-	for(int i = 1; i <= n; i++) {
-		for(int j = 1; j <= n; j++) {
-			cout << map[i][j] << ' ';
+	for(int i = 0; i < n; i++) {
+		for(int j = 0; j < n; j++) {
+			printf("%d ", dp[i][j]);
 		}
 		
-		cout << endl;
+		printf("\n");
 	}
 }
