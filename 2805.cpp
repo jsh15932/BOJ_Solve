@@ -1,28 +1,29 @@
-#include<cstdio>
-#include<algorithm>
+#include<bits/stdc++.h>
 using namespace std;
 
-long long int d[1000001];
-int n;
-long long int m;
+long long int n, m;
 
 int main() {
-	scanf("%d", &n);
-	scanf("%lld", &m);
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	cout.tie(0);
 	
-	long long int max = 0;
+	cin >> n >> m;
+	
+	long long int d[n];
+	long long int INF = 0;
 	
 	for(int i = 0; i < n; i++) {
-		scanf("%lld", &d[i]);
+		cin >> d[i];
 		
-		if(max < d[i]) {
-			max = d[i];
+		if(d[i] > INF) {
+			INF = d[i];
 		}
 	}
 	
 	long long int left = 0;
-	long long int right = max;
-	long long int result = 0;
+	long long int right = INF;
+	long long int res = 0;
 	
 	while(left <= right) {
 		long long int mid = (left + right) / 2;
@@ -33,9 +34,9 @@ int main() {
 				total += d[i] - mid;
 			}
 		}
-
+		
 		if(total >= m) {
-			result = mid;
+			res = mid;
 			left = mid + 1;
 		}
 		
@@ -44,5 +45,5 @@ int main() {
 		}
 	}
 	
-	printf("%lld", result);
+	cout << res << endl;
 }
