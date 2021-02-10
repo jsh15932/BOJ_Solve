@@ -1,20 +1,25 @@
-#include<iostream>
-#include<algorithm>
+#include<bits/stdc++.h>
 using namespace std;
 
-int d[11] = {1, 2, 4, };
-int tc, num;
+int n, t;
 
 int main() {
-	cin >> tc;
+	cin >> t;
 	
-	while(tc--) {
-		cin >> num;
+	while(t--) {
+		cin >> n;
 		
-		for(int i = 3; i < num; i++) {
-			d[i] = d[i - 1]  + d[i - 2] + d[i - 3];
+		int d[n];
+		
+		d[0] = 0;
+		d[1] = 1;
+		d[2] = 2;
+		d[3] = 4;
+		
+		for(int i = 4; i <= n; i++) {
+			d[i] = d[i - 1] + d[i - 2] + d[i - 3];
 		}
 		
-		cout << d[num - 1] << endl;
+		cout << d[n] << endl;
 	}
 }
