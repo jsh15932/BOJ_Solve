@@ -45,7 +45,7 @@ public class Main {
             }
             
             for(int i = 0; i < 4; i++) {
-                if(x + dx[i] >= 0 && y + dy[i] >= 0 && x + dx[i] <= n && y + dy[i] <= m) {
+                if(x + dx[i] > 0 && y + dy[i] > 0 && x + dx[i] <= n && y + dy[i] <= m) {
                     if(map[x + dx[i]][y + dy[i]] == 1 && arr[x + dx[i]][y + dy[i]] == 0) {
                         que.add(x + dx[i]);
                         que.add(y + dy[i]);
