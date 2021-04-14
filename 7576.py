@@ -13,25 +13,22 @@ for i in range(n):
     for j in range(m):
         if arr[i][j] == 1:
             q.append([i, j])
-
+            
 while q:
     que = q.popleft()
     
     if arr[que[0]][que[1]] > ans:
         ans = arr[que[0]][que[1]]
-    
-    for i in range(4):
-        que_x = que[0] + dx[i]
-        que_y = que[1] + dy[i]
         
-        if 0 <= que_x < n and 0 <= que_y < m:
+    for i in range(4):
+        if 0 <= que[0] + dx[i] < n and 0 <= que[1] + dy[i] < m:
             if arr[que[0] + dx[i]][que[1] + dy[i]] == 0:
-                q.append([que[0] + dx[i], que[1] + dy[i]])
                 arr[que[0] + dx[i]][que[1] + dy[i]] = arr[que[0]][que[1]] + 1
-                
+                q.append([que[0] + dx[i], que[1] + dy[i]])
+
 for i in range(n):
     for j in range(m):
         if arr[i][j] == 0:
             ans = 0
-
+            
 print(ans - 1)
