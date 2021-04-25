@@ -10,11 +10,11 @@ public class Main {
         int map[][] = new int[n + 1][m + 1];
         int arr[][] = new int[n + 1][m + 1];
         
-        for(int i = 1; i <= n; i++) {
+        for(int i = 0; i < n; i++) {
             String s = sc.nextLine();
             
-            for(int j = 1; j <= m; j++) {
-                map[i][j] = s.charAt(j - 1) - 48;
+            for(int j = 0; j < m; j++) {
+                map[i][j] = s.charAt(j) - 48;
             }
         }
         
@@ -23,11 +23,12 @@ public class Main {
         int dy[] = {0, -1, 0, 1};
         int ans = 0;
         
+        
         for(int i = 0; i < 3; i++) {
-            que.add(1);
+            que.add(0);
         }
         
-        arr[1][1] = 1;
+        arr[0][0] = 1;
         
         while(true) {
             if(que.size() == 0) {
@@ -38,24 +39,25 @@ public class Main {
             int y = que.poll();
             int cnt = que.poll();
             
-            if(x == n && y == m) {
+            if(x == n - 1 && y == m - 1) {
                 ans = cnt;
                 
                 break;
             }
             
             for(int i = 0; i < 4; i++) {
-                if(x + dx[i] > 0 && y + dy[i] > 0 && x + dx[i] <= n && y + dy[i] <= m) {
+                if(x + dx[i] >= 0 && x + dx[i] < n && y + dy[i] >= 0 && y + dy[i] < m) {
                     if(map[x + dx[i]][y + dy[i]] == 1 && arr[x + dx[i]][y + dy[i]] == 0) {
                         que.add(x + dx[i]);
                         que.add(y + dy[i]);
                         que.add(cnt + 1);
+                        
                         arr[x + dx[i]][y + dy[i]] = 1;
                     }
                 }
             }
         }
         
-        System.out.println(ans);
+        System.out.println(ans + 1);
     }
 }
