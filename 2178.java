@@ -2,13 +2,17 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
+    public static int dx[] = {-1, 0, 1, 0};
+    public static int dy[] = {0, -1, 0, 1};
+    
     public static void main(String args[]) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int m = sc.nextInt();
         sc.nextLine();
-        int map[][] = new int[n + 1][m + 1];
+        
         int arr[][] = new int[n + 1][m + 1];
+        int map[][] = new int[n + 1][m + 1];
         
         for(int i = 0; i < n; i++) {
             String s = sc.nextLine();
@@ -19,10 +23,7 @@ public class Main {
         }
         
         Queue<Integer> que = new LinkedList<>();
-        int dx[] = {-1, 0, 1, 0};
-        int dy[] = {0, -1, 0, 1};
         int ans = 0;
-        
         
         for(int i = 0; i < 3; i++) {
             que.add(0);
@@ -30,11 +31,7 @@ public class Main {
         
         arr[0][0] = 1;
         
-        while(true) {
-            if(que.size() == 0) {
-                break;
-            }
-            
+        while(que.size() != 0) {
             int x = que.poll();
             int y = que.poll();
             int cnt = que.poll();
