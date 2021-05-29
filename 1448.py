@@ -1,24 +1,14 @@
-import sys
-
 n = int(input())
 arr = []
-result = 0
 
-for _ in range(n):
-    arr.append(int(sys.stdin.readline()))
+for i in range(n):
+    arr.append(int(input()))
     
-arr.sort(reverse=True)
+arr.sort()
+res = -1
 
-while(True):
-    if arr[0] < (arr[1] + arr[2]):
-        result = arr[0] + arr[1] + arr[2]
-        break
-    
-    elif len(arr) > 3:
-        arr.pop(0)
-        
-    else:
-        result = -1
-        break
+for i in range(n - 2):
+    if arr[i] + arr[i + 1] > arr[i + 2]:
+        res = arr[i] + arr[i + 1] + arr[i + 2]
 
-print(result)
+print(res)

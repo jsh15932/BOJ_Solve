@@ -1,17 +1,19 @@
 n = int(input())
-arr = [int(input()) for _ in range(n)]
+arr = []
+
+for i in range(n):
+    arr.append(int(input()))
+    
 arr.sort()
-cnt = 1
+res = 0
 
-for i in range(n - 1):
-    for j in range(i + 1, n):
-        if arr[j] - arr[i] >= 5:
-            break
+for i in range(n):
+    cnt = 0
+    
+    for j in range(5):
+        if arr[i] + j in arr[i : i + 5]:
+            cnt += 1
         
-        cnt = max(j - i + 1, cnt)
+        res = max(res, cnt)
         
-if cnt > 4:
-    print(0)
-
-else:
-    print(5 - cnt)
+print(5 - res)
