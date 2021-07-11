@@ -1,52 +1,46 @@
-#include<iostream>
-#include<queue>
-#include<algorithm>
+#include<bits/stdc++.h>
 using namespace std;
 
-int t, n, m;
-int num, ans;
-queue < pair < int, int > > que;
-priority_queue <int> pq;
-
 int main() {
-	cin >> t;
+	int tc;
+	cin >> tc;
 	
-	while(t--) {
-		ans = 0;
+	while(tc--) {
+		int n = 0, m = 0;
+		int cnt = 0;
+		
+		queue<pair <int, int> > que;
+		priority_queue<int> pq;
 		
 		cin >> n >> m;
 		
-		while(!que.empty() || !pq.empty()) {
-			que.pop();
-			pq.pop();
-		}
-
-		for(int i = 0; i < n; i++) {
+		for(int j = 0; j < n; j++) {
+			int num;
 			cin >> num;
-			que.push(make_pair(num, i));
+			
+			que.push({j, num});
 			pq.push(num);
 		}
 		
 		while(!que.empty()) {
-			int q1 = que.front().first;
-			int q2 = que.front().second;
-			
+			int curIdx = que.front().first;
+			int curNum = que.front().second;
 			que.pop();
 			
-			if(pq.top() == q1) {
-				ans++;
+			if(pq.top() == curNum) {
 				pq.pop();
+				cnt++;
 				
-				if(q2 == m) {
+				if(curIdx == m) {
+					cout << cnt << endl;
+					
 					break;
 				}
 			}
 			
 			else {
-				que.push(make_pair(q1, q2));
+				que.push({curIdx, curNum});
 			}
 		}
-		
-		cout << ans << endl;
 	}
 }
