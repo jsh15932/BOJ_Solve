@@ -1,34 +1,31 @@
-#include<iostream>
-#include<algorithm>
+#include<bits/stdc++.h>
 using namespace std;
-#define INF 1000001
 
 int n;
-int ans = -1;
+
+int Solve(int n) {
+	int sum = n;
+	
+	while(n) {
+		sum += n % 10;
+		n /= 10;
+	}
+	
+	return sum;
+}
 
 int main() {
 	cin >> n;
 	
-	for(int i = 1; i <= INF; i++) {
-		int cur = i;
-		int sum = 0;
+	for(int i = 1; i < n; i++) {
+		int sum = Solve(i);
 		
-		while(cur != 0) {
-			sum += (cur % 10);
-			cur /= 10;
-		}
-		
-		if(n == (i + sum)) {
-			ans = i;
-			break;
+		if(sum == n) {
+			cout << i << endl;
+			
+			return 0;
 		}
 	}
 	
-	if(ans == - 1) {
-		cout << 0; 
-	}
-	
-	else {
-		cout << ans;
-	}
+	cout << 0;
 }
