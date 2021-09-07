@@ -4,47 +4,47 @@ using namespace std;
 string s;
 
 int main() {
-	while(1) {
+	while(true) {
 		getline(cin, s);
 		
 		if(s.size() == 1 && s[0] == '.') {
 			break;
 		}
 		
-		bool chk_line = false;
-		stack <char> chk;
+		bool chk = true;
+		stack<char> st;
 		
 		for(int i = 0; i < s.size(); i++) {
-			if(s[i] == '(' || s[i] == '[') {
-				chk.push(s[i]);
+			if(s[i] == '('|| s[i] == '[') {
+				st.push(s[i]);
 			}
 			
 			else if(s[i] == ')') {
-				if(chk.size() > 0 && chk.top() == '(') {
-					chk.pop();
+				if(st.size() > 0 && st.top() == '(') {
+					st.pop();
 				}
 				
 				else {
-					chk_line = true;
+					chk = false;
 					
 					break;
 				}
 			}
 			
 			else if(s[i] == ']') {
-				if(chk.size() > 0 && chk.top() == '[') {
-					chk.pop();
+				if(st.size() > 0 && st.top() == '[') {
+					st.pop();
 				}
 				
 				else {
-					chk_line = true;
+					chk = false;
 					
 					break;
 				}
 			}
 		}
 		
-		if(chk.empty() && !chk_line) {
+		if(st.empty() && chk) {
 			cout << "yes" << endl;
 		}
 		
