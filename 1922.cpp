@@ -2,7 +2,7 @@
 using namespace std;
 
 int n, m;
-vector<pair<int, int>> vc[1001];
+vector< pair<int, int> > vc[1001];
 bool visited[1001];
 
 int main() {
@@ -14,12 +14,12 @@ int main() {
 		int a, b, c;
 		
 		cin >> a >> b >> c;
-		vc[a].push_back(make_pair(b, c));
-		vc[b].push_back(make_pair(a, c));
+		vc[a].push_back({b, c});
+		vc[b].push_back({a, c});
 	}
 	
-	priority_queue<pair<int, int>> pq;
-	pq.push(make_pair(0, 1));
+	priority_queue< pair<int, int> > pq;
+	pq.push({0, 1});
 	
 	while(!pq.empty()) {
 		int cur_cost = -pq.top().first;
@@ -42,9 +42,9 @@ int main() {
 				continue;
 			}
 			
-			pq.push(make_pair(-next_cost, next_idx));
+			pq.push({-next_cost, next_idx});
 		}
 	}
 	
-	cout << res << endl;
+	cout << res;
 }
