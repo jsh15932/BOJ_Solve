@@ -108,7 +108,7 @@ int main() {
 		}
 	}
 	
-	vector<bool> visited(13, 0);
+	vector<bool> visited(13, false);
 	res = INF;
 	
 	solve(visited, 0);
