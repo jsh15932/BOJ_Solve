@@ -1,26 +1,27 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+int tc, n, m;
+
 int main() {
-	int tc;
 	cin >> tc;
 	
 	while(tc--) {
-		int n = 0, m = 0;
-		int cnt = 0;
-		
-		queue<pair <int, int> > que;
-		priority_queue<int> pq;
-		
 		cin >> n >> m;
 		
-		for(int j = 0; j < n; j++) {
+		queue< pair<int, int> > que;
+		priority_queue<int> pq;	
+		
+		for(int i = 0; i < n; i++) {
 			int num;
+			
 			cin >> num;
 			
-			que.push({j, num});
+			que.push({ i, num });
 			pq.push(num);
 		}
+		
+		int cnt = 0;
 		
 		while(!que.empty()) {
 			int curIdx = que.front().first;
@@ -39,7 +40,7 @@ int main() {
 			}
 			
 			else {
-				que.push({curIdx, curNum});
+				que.push({ curIdx, curNum });
 			}
 		}
 	}

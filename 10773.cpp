@@ -1,11 +1,10 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+int n, num;
+stack<int> s;
+
 int main() {
-	int n, num;
-	int sum = 0;
-	stack<int> s;
-	
 	cin >> n;
 	
 	for(int i = 0; i < n; i++) {
@@ -19,6 +18,8 @@ int main() {
 			s.pop();
 		}
 	}
+	
+	int sum = 0;
 	
 	while(!s.empty()) {
 		sum += s.top();
