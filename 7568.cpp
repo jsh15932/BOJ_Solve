@@ -1,17 +1,17 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+int n;
+pair<int, int> arr[51];
+
 int main() {
-	int n;
-	int k = 1;
-	
 	cin >> n;
-	
-	pair<int, int> arr[n];
 	
 	for(int i = 0; i < n; i++) {
 		cin >> arr[i].first >> arr[i].second;
 	}
+	
+	int k = 1;
 	
 	for(int i = 0; i < n; i++) {
 		for(int j = 0; j < n; j++) {
