@@ -1,27 +1,26 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define INF 200000
+#define maxN 100000
 
 int n, k;
-bool chk[INF + 1];
-int d[INF + 1];
-int start[INF + 1];
+int d[maxN + 1];
+int start[maxN + 1];
+bool chk[maxN + 1];
+queue<int> que;
 
-void print(int n, int k) {
+void solve(int n, int k) {
 	if(n != k) {
-		print(n, start[k]);
+		solve(n, start[k]);
 	}
 	
-	cout << k << " ";
+	cout << k << ' ';
 }
 
 int main() {
 	cin >> n >> k;
 	
-	chk[n] = true;
 	d[n] = 0;
-	
-	queue<int> que;
+	chk[n] = true;
 	que.push(n);
 	
 	while(!que.empty()) {
@@ -37,7 +36,7 @@ int main() {
 			}
 		}
 		
-		if(cur + 1 < INF) {
+		if(cur + 1 <= maxN) {
 			if(!chk[cur + 1]) {
 				que.push(cur + 1);
 				chk[cur + 1] = true;
@@ -46,7 +45,7 @@ int main() {
 			}
 		}
 		
-		if(cur * 2 < INF) {
+		if(cur * 2 <= maxN) {
 			if(!chk[cur * 2]) {
 				que.push(cur * 2);
 				chk[cur * 2] = true;
@@ -58,5 +57,5 @@ int main() {
 	
 	cout << d[k] << endl;
 	
-	print(n, k);
+	solve(n, k);
 }
