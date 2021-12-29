@@ -5,7 +5,7 @@ string s;
 vector<int> vc(10);
 
 int main() {
-	cin >> s;
+	getline(cin, s);
 	
 	int cnt = 0;
 	
