@@ -1,30 +1,32 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int n, num;
-stack<int> s;
+int k;
+stack<int> st;
 
 int main() {
-	cin >> n;
+	cin >> k;
 	
-	for(int i = 0; i < n; i++) {
+	while(k--) {
+		int num;
+		
 		cin >> num;
 		
 		if(num != 0) {
-			s.push(num);
+			st.push(num);	
 		}
 		
 		else {
-			s.pop();
+			st.pop();
 		}
 	}
 	
-	int sum = 0;
+	int cnt = 0;
 	
-	while(!s.empty()) {
-		sum += s.top();
-		s.pop();
+	while(!st.empty()) {
+		cnt += st.top();
+		st.pop();
 	}
 	
-	cout << sum << endl;
+	cout << cnt << endl;
 }
