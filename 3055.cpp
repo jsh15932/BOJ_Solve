@@ -1,7 +1,4 @@
-#include<iostream>
-#include<queue>
-#include<cstring>
-#include<algorithm>
+#include<bits/stdc++.h>
 using namespace std;
 
 int n, m;
