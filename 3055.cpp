@@ -13,7 +13,7 @@ int d[51][51];
 queue < pair < pair < int, int >, int > > que;
 
 void bfs() {
-	que.push(make_pair(make_pair(x, y), 1));
+	que.push({{ x, y }, 1});
 	d[x][y] = 1;
 	
 	while(!que.empty()) {
@@ -25,21 +25,19 @@ void bfs() {
 		
 		for(int i = 0; i < 4; i++) {
 			if(q1 + dx[i] >= 0 && q2 + dy[i] >= 0 && q1 + dx[i] < n && q2 + dy[i] < m) {
-				if(map[q1 + dx[i]][q2 + dy[i]] == 'X' || d[q1 + dx[i]][q2 + dy[i]]) {
-					continue;
-				}
-				
-				if(map[q1 + dx[i]][q2 + dy[i]] == 'D') {
-					if(q3 == 0) {
-						continue;
-					}
+				if(map[q1 + dx[i]][q2 + dy[i]] != 'X' && d[q1 + dx[i]][q2 + dy[i]] == 0) {
+					if(map[q1 + dx[i]][q2 + dy[i]] == 'D') {
+					    if(q3 == 0) {
+						    continue;
+					    }
 					
-					cout << d[q1][q2];
-					return;
-				}
+					    cout << d[q1][q2];
+					    return;
+				    }
 				
-				d[q1 + dx[i]][q2 + dy[i]] = d[q1][q2] + 1;
-				que.push(make_pair(make_pair(q1 + dx[i], q2 + dy[i]), q3));
+				    d[q1 + dx[i]][q2 + dy[i]] = d[q1][q2] + 1;
+				    que.push(make_pair(make_pair(q1 + dx[i], q2 + dy[i]), q3));
+				}
 			}
 		}
 	}
@@ -55,7 +53,7 @@ int main() {
 			scanf("%1s", &map[i][j]);
 			
 			if(map[i][j] == '*') {
-				que.push(make_pair(make_pair(i, j), 0));
+				que.push({{i, j}, 0});
 				d[i][j] = 1;
 			}
 			
