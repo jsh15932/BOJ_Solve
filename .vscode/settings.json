@@ -9,6 +9,7 @@
         "memory": "cpp",
         "regex": "cpp",
         "iterator": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "deque": "cpp"
     }
 }
