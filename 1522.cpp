@@ -17,7 +17,7 @@ int main() {
         }
     }
 
-    for(int i = 0; i < s.length(); i++) {
+    for(int i = 0; i < len; i++) {
         res = 0;
 
         for(int j = i; j < i + cnt; j++) {
