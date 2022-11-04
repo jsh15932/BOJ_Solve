@@ -10,6 +10,7 @@
         "regex": "cpp",
         "iterator": "cpp",
         "random": "cpp",
-        "deque": "cpp"
+        "deque": "cpp",
+        "string": "cpp"
     }
 }

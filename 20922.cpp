@@ -27,12 +27,12 @@ int main() {
             else {
                 int p = -1;
 
-                while(!dq.empty()) {
+                while(!dq.empty() && p != num) {
                     p = dq.front();
                     dq.pop_front();
                     arr[p] -= 1;
                 }
-                
+
                 dq.push_back(num);
             }
         }
